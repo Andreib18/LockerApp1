@@ -11,9 +11,10 @@ namespace LockerApp1
         {
             SqlConnection sc = new SqlConnection("Data source = .;Initial Catalog = AndreiSQL;Integrated Security = TRUE ");
             SqlDataAdapter da = new SqlDataAdapter();
-            da.InsertCommand = new SqlCommand("INSERT INTO tblUsers VALUES (@USERNAME,@PASSWORD)", sc);
+            da.InsertCommand = new SqlCommand("INSERT INTO tblUsers VALUES (@USERNAME,@PASSWORD,@HASH)", sc);
             da.InsertCommand.Parameters.Add("@USERNAME", SqlDbType.VarChar).Value = user.Username;
             da.InsertCommand.Parameters.Add("@PASSWORD", SqlDbType.VarChar).Value = user.Password;
+            da.InsertCommand.Parameters.Add("@HASH", SqlDbType.VarChar).Value = PasswordHash.HashPassword(user);
             sc.Open();
             da.InsertCommand.ExecuteNonQuery();
             sc.Close();
@@ -34,9 +35,10 @@ namespace LockerApp1
         {
 
             SqlConnection sc = new SqlConnection("Data source = .;Initial Catalog = AndreiSQL;Integrated Security = TRUE ");
-            SqlCommand selectCommand = new SqlCommand("Select count(username) from tblUsers where username = @username and password =@password", sc);
+            SqlCommand selectCommand = new SqlCommand("Select count(username) from tblUsers where username = @username and hash =@hash and password =@password", sc);
             selectCommand.Parameters.Add("@USERNAME", SqlDbType.VarChar).Value = user.Username;
-            selectCommand.Parameters.Add("@PASSWORD", SqlDbType.VarChar).Value = user.Password;
+            selectCommand.Parameters.Add("@password", SqlDbType.VarChar).Value = user.Password;
+            selectCommand.Parameters.Add("@hash", SqlDbType.VarChar).Value = PasswordHash.HashPassword(user);
             sc.Open();
             var userCount = (Int32)selectCommand.ExecuteScalar();
             sc.Close();

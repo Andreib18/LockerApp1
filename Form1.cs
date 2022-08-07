@@ -8,23 +8,22 @@ namespace LockerApp1
         public Form1()
         {
             InitializeComponent();
+            PasswordTb.PasswordChar = '*';
+
         }
-        
-        
-        
+
+
+
         public void SaveButton_Click(object sender, EventArgs e)
         {
-            StreamWriter sw = new StreamWriter(Application.StartupPath + "\\users\\" +UsernameTb.Text+ ".txt"); //path to write .txt files
-            sw.WriteLine(UsernameLb.Text + ": " + UsernameTb.Text);
-            sw.WriteLine(PasswordLb.Text + ": " + PasswordTb.Text);
-            sw.Close();
+
             User user = new User(UsernameTb.Text, PasswordTb.Text);
-            Authenticator.CheckIfUserExists(user);
-            
+           
             bool userExists = DatabaseConnector.CheckUserExists(UsernameTb.Text);
             if (!userExists)
             {
                 DatabaseConnector.InsertUser(user);
+                PasswordHash.HashPassword(user);
             }
             else
             {
@@ -55,14 +54,12 @@ namespace LockerApp1
             if (DatabaseConnector.CheckUserCedential(user))
             {
                 
-                if (DatabaseConnector.CheckUserCedential(user))
-                {
-                    MessageBox.Show("Login SUCCES");
-                }
+                    MessageBox.Show("User logged in successfully");
+                
             }
             else
             {
-                MessageBox.Show("Login not SUCCES");
+                MessageBox.Show("Username or password does not match");
 
             }
         }

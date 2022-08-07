@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "9EdaW49dz4/9owAHu8cXmM+p+1z0dpYhREuTVJz8PzAOhsr/eUEo5kQCudg9wldGVw2QOWOYYnDVJ2lYleGB0A==",
+  "dgSpecHash": "+iUWFte3IXWsa55vcvqftGmfxrSj6Ixsdhc7YFoRa+970t1oD1A5JVPb/XF4kWSerN+FRKEyLnFapRbs7HTIog==",
   "success": true,
   "projectFilePath": "C:\\Users\\work\\source\\repos\\LockerApp1\\LockerApp1.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\work\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\work\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\work\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\work\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.7.0\\runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",
